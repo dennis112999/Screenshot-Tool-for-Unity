@@ -32,4 +32,5 @@ namespace Dennis.Tools.ScreenshotTool
                 return GetSavePath();
             }
         }
+    }
 }
