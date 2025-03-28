@@ -25,13 +25,9 @@ namespace Dennis.Tools.ScreenshotTool
                 return null;
             }
 
-            // Calculate the final resolution based on width, height, and scale
-            int finalWidth = settings.width * settings.scale;
-            int finalHeight = settings.height * settings.scale;
-
             // Create a temporary RenderTexture and Texture2D for capture
-            RenderTexture renderTexture = new RenderTexture(finalWidth, finalHeight, 24);
-            Texture2D screenshotTexture = new Texture2D(finalWidth, finalHeight, TextureFormat.ARGB32, false);
+            RenderTexture renderTexture = new RenderTexture(settings.FinalWidth, settings.FinalHeight, 24);
+            Texture2D screenshotTexture = new Texture2D(settings.FinalWidth, settings.FinalHeight, TextureFormat.ARGB32, false);
 
             try
             {
@@ -41,7 +37,7 @@ namespace Dennis.Tools.ScreenshotTool
 
                 // Read the rendered image into a Texture2D
                 RenderTexture.active = renderTexture;
-                screenshotTexture.ReadPixels(new Rect(0, 0, finalWidth, finalHeight), 0, 0);
+                screenshotTexture.ReadPixels(new Rect(0, 0, settings.FinalWidth, settings.FinalHeight), 0, 0);
                 screenshotTexture.Apply();
 
                 // Encode the texture into the selected image format (PNG, JPG, EXR)
