@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace Dennis.Tools.ScreenshotTool
@@ -20,7 +21,12 @@ namespace Dennis.Tools.ScreenshotTool
         /// <param name="scale"></param>
         public void Draw(Camera camera, int resWidth, int resHeight, int scale)
         {
-            if (camera == null) return;
+            if (camera == null)
+            {
+                EditorGUILayout.HelpBox("Camera is not assigned. A valid camera must be selected to render the preview.",
+                        MessageType.Warning);
+                return;
+            }
 
             int scaledWidth = resWidth * scale;
             int scaledHeight = resHeight * scale;
